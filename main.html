@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Layout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    aside {
+      width: 240px;
+      background-color: #1e293b;
+      color: #fff;
+      padding: 1.5rem;
+    }
+
+    aside h2 {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }
+
+    aside nav a {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+    }
+
+    aside nav a:hover {
+      background-color: #334155;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    section.content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .placeholder {
+      border: 2px dashed #94a3b8;
+      padding: 2rem;
+      text-align: center;
+      color: #64748b;
+      border-radius: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <h2>Layout</h2>
+    <nav>
+      <a href="#">Genesis</a>
+      <a href="#">Exodus</a>
+      <a href="#">Psalms</a>
+      <a href="#">Gospels</a>
+      <a href="#">Word of God</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header>
+      Layout \
+    </header>
+    <section class="content">
+      <div class="placeholder">
+        content will go here.
+      </div>
+    </section>
+  </main>
+
+</bod
