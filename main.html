@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bible Website Layout</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=EB+Garamond:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -26,12 +26,20 @@
       flex: 1;
       padding: 2rem;
       overflow-y: auto;
+      position: relative;
     }
 
     .site-title {
-      font-size: 2.5rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 6rem;
       font-weight: 700;
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-bottom: 3px solid #8c7345;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      color: #4b3a24;
     }
 
     .explanation {
@@ -42,29 +50,40 @@
     }
 
     .links {
-      color: #5c8ea7;
+      color: #7b5e3c;
       font-size: 1.1rem;
       text-align: center;
     }
 
-    .sidebar-left, .sidebar-right {
+.sidebar-left {
       position: fixed;
       top: 0;
       bottom: 0;
       width: 260px;
-      background-color: #3b5b74;
+      background-color: rgba(51, 78, 104, 0.9);
       color: white;
       padding: 2.5rem 1rem 1.5rem;
       overflow-y: auto;
       z-index: 1000;
       transform: translateX(-100%);
       transition: transform 0.3s ease-in-out;
+      backdrop-filter: blur(2px);
     }
 
     .sidebar-right {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 180px;
+      background-color: #334e68;
+      color: white;
+      padding: 2.5rem 1rem 1.5rem;
+      overflow-y: auto;
+      z-index: 1000;
       right: 0;
       left: auto;
       transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
     }
 
     .sidebar-left.open {
@@ -78,6 +97,8 @@
     .sidebar-left ul {
       list-style: none;
       padding-left: 0;
+      border-left: 2px solid #8c7345;
+      margin-left: 0.5rem;
     }
 
     .sidebar-left li {
@@ -86,53 +107,15 @@
       padding: 0.5rem;
       cursor: pointer;
       transition: background 0.2s;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
     }
 
     .sidebar-left li:hover {
       background-color: #d4b078;
       color: #3b3b3b;
-      border-radius: 4px;
-    }
-
-    .sidebar-right h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      color: white;
-    }
-
-    .sidebar-right p {
-      color: #f0f0f0;
-    }
-
-    .toggle-btn {
-      position: fixed;
-      top: 10px;
-      padding: 0.5rem 1rem;
-      background-color: #a77c53;
-      color: white;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      border-radius: 5px;
-      z-index: 1001;
-      transition: left 0.3s ease-in-out, right 0.3s ease-in-out;
-    }
-
-    #menu-btn {
-      left: 10px;
-    }
-
-    #faq-btn {
-      right: 10px;
-    }
-
-    .sidebar-left.open ~ #menu-btn {
-      left: 270px;
-    }
-
-    .sidebar-right.open ~ #faq-btn {
-      right: 270px;
     }
 
     .collapsible {
@@ -144,53 +127,59 @@
 
     .collapsible li {
       padding-left: 1rem;
+      font-size: 0.9rem;
     }
 
     .collapsible.show {
-      max-height: 500px;
+      max-height: 300px;
     }
 
-    body.dark-mode {
-      background-color: #1e1e1e;
-      color: #eaeaea;
-    }
-
-    body.dark-mode main {
-      background-color: #2b2b2b;
-    }
-
-    body.dark-mode .explanation {
-      color: #e5e7eb;
-    }
-
-    body.dark-mode .sidebar-left,
-    body.dark-mode .sidebar-right {
-      background-color: #111827;
+    .sidebar-right h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
       color: white;
     }
 
-    body.dark-mode .sidebar-left li:hover {
-      background-color: #374151;
-      color: #fefefe;
+    .sidebar-right p {
+      color: #f0f0f0;
+      font-size: 0.9rem;
     }
 
-    body.dark-mode .links {
-      color: #93c5fd;
+    .toggle-btn {
+      position: absolute;
+      top: 10px;
+      padding: 0.5rem 1rem;
+      background: #a77c53;
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 8px;
+      z-index: 1001;
+      transition: transform 0.3s ease-in-out;
     }
 
-    body.dark-mode .toggle-btn {
-      background-color: #4b5563;
+    #menu-btn {
+      left: 10px;
     }
 
-    body.dark-mode .sidebar-right p {
-      color: #d1d5db;
+    #faq-btn {
+      right: 10px;
+    }
+
+    .sidebar-left.open ~ #menu-btn {
+      transform: translateX(260px);
+    }
+
+    .sidebar-right.open ~ #faq-btn {
+      transform: translateX(-180px);
     }
 
     .switch-wrapper {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-bottom: 1rem;
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
 
     .switch-label {
@@ -242,39 +231,77 @@
     input:checked + .slider:before {
       transform: translateX(20px);
     }
-  </style>
+
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #eaeaea;
+    }
+
+    body.dark-mode main {
+      background-color: #2b2b2b;
+    }
+
+    body.dark-mode .explanation {
+      color: #e5e7eb;
+    }
+
+    body.dark-mode .site-title {
+      color: #f5f3ec;
+      border-color: #bfa66a;
+    }
+
+    body.dark-mode .sidebar-left,
+    body.dark-mode .sidebar-right {
+      background-color: rgba(17, 24, 39, 0.9);
+      color: white;
+    }
+
+    body.dark-mode .sidebar-left li:hover {
+      background-color: #374151;
+      color: #fefefe;
+    }
+
+    body.dark-mode .sidebar-right p {
+      color: #d1d5db;
+    }
+    .sidebar-left::-webkit-scrollbar,
+  .sidebar-right::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar-left,
+  .sidebar-right {
+    scrollbar-width: none;
+  }
+</style>
 </head>
 <body>
-
   <div class="sidebar-left" id="menu">
     <div class="switch-wrapper">
-      <span class="switch-label">Dark Mode</span>
+      <label class="switch-label">Dark Mode</label>
       <label class="switch">
-        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+        <input type="checkbox" id="darkToggle">
         <span class="slider"></span>
       </label>
     </div>
     <ul>
       <li>Why the Bible?</li>
-
-      <li onclick="toggleOldTestament()">THE OLD TESTAMENT</li>
-      <ul id="old-testament-books" class="collapsible">
+      <li onclick="toggleSection('old-testament')">THE OLD TESTAMENT</li>
+      <ul id="old-testament" class="collapsible">
         <li>Genesis</li>
         <li>Exodus</li>
         <li>Leviticus</li>
         <li>Numbers</li>
         <li>Deuteronomy</li>
       </ul>
-
-      <li onclick="toggleNewTestament()">THE NEW TESTAMENT</li>
-      <ul id="new-testament-books" class="collapsible">
+      <li onclick="toggleSection('new-testament')">THE NEW TESTAMENT</li>
+      <ul id="new-testament" class="collapsible">
         <li>1</li>
         <li>2</li>
         <li>3</li>
       </ul>
-
-      <li onclick="toggleGospels()">THE GOSPELS</li>
-      <ul id="gospels-books" class="collapsible">
+      <li onclick="toggleSection('gospels')">THE GOSPELS</li>
+      <ul id="gospels" class="collapsible">
         <li>1</li>
         <li>2</li>
         <li>3</li>
@@ -284,13 +311,7 @@
 
   <div class="sidebar-right" id="faq">
     <h1>FAQ</h1>
-    <p>Placeholder for FAQ content.</p>
-    <p>More scrollable text...</p>
-    <p>More text...</p>
-    <p>More text...</p>
-    <p>More text...</p>
-    <p>More text...</p>
-    <p>End of FAQ.</p>
+    <p>Placeholder for FAQ content. More scrollable text...<br>More text...<br>More text...<br>End of FAQ.</p>
   </div>
 
   <main>
@@ -305,40 +326,35 @@
   <button class="toggle-btn" id="faq-btn" onclick="toggleFAQ()">FAQ</button>
 
   <script>
+    const darkToggle = document.getElementById('darkToggle');
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      darkToggle.checked = true;
+    }
+
+    darkToggle.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', darkToggle.checked);
+    });
+
     function toggleMenu() {
       const menu = document.getElementById('menu');
+      const btn = document.getElementById('menu-btn');
       menu.classList.toggle('open');
+      btn.classList.toggle('shifted-left');
     }
 
     function toggleFAQ() {
       const faq = document.getElementById('faq');
+      const btn = document.getElementById('faq-btn');
       faq.classList.toggle('open');
+      btn.classList.toggle('shifted-right');
     }
 
-    function toggleOldTestament() {
-      document.getElementById('old-testament-books').classList.toggle('show');
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle('show');
     }
-
-    function toggleNewTestament() {
-      document.getElementById('new-testament-books').classList.toggle('show');
-    }
-
-    function toggleGospels() {
-      document.getElementById('gospels-books').classList.toggle('show');
-    }
-
-    function toggleDarkMode() {
-      const isDark = document.body.classList.toggle("dark-mode");
-      localStorage.setItem("darkMode", isDark ? "on" : "off");
-    }
-
-    window.onload = function () {
-      if (localStorage.getItem("darkMode") === "on") {
-        document.body.classList.add("dark-mode");
-        document.getElementById("darkModeToggle").checked = true;
-      }
-    };
   </script>
-
 </body>
 </html>
