@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Layout</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bible Website Layout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -16,87 +16,168 @@
     body {
       display: flex;
       height: 100vh;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    aside {
-      width: 240px;
-      background-color: #1e293b;
-      color: #fff;
-      padding: 1.5rem;
-    }
-
-    aside h2 {
-      margin-bottom: 1rem;
-      font-size: 1.25rem;
-    }
-
-    aside nav a {
-      display: block;
-      color: #cbd5e1;
-      text-decoration: none;
-      margin-bottom: 0.75rem;
-      padding: 0.5rem;
-      border-radius: 8px;
-    }
-
-    aside nav a:hover {
-      background-color: #334155;
+      overflow: hidden;
+      position: relative;
     }
 
     main {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      background-color: #fff;
-      padding: 1rem 2rem;
-      border-bottom: 1px solid #e2e8f0;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    section.content {
-      flex: 1;
       padding: 2rem;
       overflow-y: auto;
+      background-color: #f9f9f9;
     }
 
-    .placeholder {
-      border: 2px dashed #94a3b8;
-      padding: 2rem;
+    .site-title {
+      font-size: 2.5rem;
+      font-weight: 700;
       text-align: center;
-      color: #64748b;
-      border-radius: 10px;
-      font-style: italic;
+    }
+
+    .explanation {
+      font-size: 1.25rem;
+      color: #1f2937;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .links {
+      color: #2563eb;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .sidebar-left, .sidebar-right {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 260px;
+      background-color: #3b82f6;
+      color: white;
+      padding: 2.5rem 1rem 1.5rem;
+      overflow-y: auto;
+      z-index: 1000;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar-right {
+      right: 0;
+      left: auto;
+      transform: translateX(100%);
+    }
+
+    .sidebar-left.open {
+      transform: translateX(0%);
+    }
+
+    .sidebar-right.open {
+      transform: translateX(0%);
+    }
+
+    .sidebar-left h3, .sidebar-right h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-left ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .sidebar-left li {
+      margin: 0.25rem 0;
+      background: white;
+      color: #3b82f6;
+      padding: 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .sidebar-left p {
+      margin-top: 1rem;
+    }
+
+    .sidebar-right h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 10px;
+      padding: 0.5rem 1rem;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 1001;
+      transition: left 0.3s ease-in-out, right 0.3s ease-in-out;
+    }
+
+    #menu-btn {
+      left: 10px;
+    }
+
+    #faq-btn {
+      right: 10px;
+    }
+
+    /* Move buttons with panels */
+    .sidebar-left.open ~ #menu-btn {
+      left: 270px;
+    }
+
+    .sidebar-right.open ~ #faq-btn {
+      right: 270px;
     }
   </style>
 </head>
 <body>
 
-  <aside>
-    <h2>Layout</h2>
-    <nav>
-      <a href="#"> Why The Bible?</a>
-      <a href="#">The Book of Genesis</a>
-      <a href="#">The Book of Exodus</a>
-      <a href="#">The Book of Leviticus</a>
-      <a href="#">The Book of Numbers</a>
-    </nav>
-  </aside>
+  <div class="sidebar-left" id="menu">
+    <ul>
+      <li>Why the Bible?</li>
+      <li>THE OLD TESTAMENT</li>
+      <li>Genesis</li>
+      <li>Exodus</li>
+      <li>Leviticus</li>
+      <li>Numbers</li>
+      <li>Deuteronomy</li>
+      <li>THE NEW TESTAMENT</li>
+      <li>THE GOSPELS</li>
+    </ul>
+  </div>
+
+  <div class="sidebar-right" id="faq">
+    <h1>FAQ</h1>
+    <p>placeholder for FAQ</p>
+  </div>
 
   <main>
-    <header>
-      Layout \
-    </header>
-    <section class="content">
-      <div class="placeholder">
-        content
-      </div>
-    </section>
+    <div class="site-title">NAME OF WEBSITE</div>
+    <div class="explanation">explanation</div>
+    <div class="explanation">explanation</div>
+    <div class="explanation">explanation</div>
+    <div class="links">links to sources and Credible Teachings, supporting articles, etc.</div>
   </main>
 
-</bod
+  <button class="toggle-btn" id="menu-btn" onclick="toggleMenu()">☰</button>
+  <button class="toggle-btn" id="faq-btn" onclick="toggleFAQ()">FAQ</button>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('open');
+    }
+
+    function toggleFAQ() {
+      const faq = document.getElementById('faq');
+      faq.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
