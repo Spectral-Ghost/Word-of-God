@@ -74,25 +74,16 @@
       transform: translateX(0%);
     }
 
-    .sidebar-left h3, .sidebar-right h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
     .sidebar-left ul {
       list-style: none;
       padding-left: 0;
     }
 
     .sidebar-left li {
-    margin: 0.25rem 0;
-    color: white;
-    padding: 0.5rem;
-    cursor: pointer;
-    }
-
-    .sidebar-left p {
-      margin-top: 1rem;
+      margin: 0.25rem 0;
+      color: white;
+      padding: 0.5rem;
+      cursor: pointer;
     }
 
     .sidebar-right h1 {
@@ -123,13 +114,27 @@
       right: 10px;
     }
 
-    /* Move buttons with panels */
     .sidebar-left.open ~ #menu-btn {
       left: 270px;
     }
 
     .sidebar-right.open ~ #faq-btn {
       right: 270px;
+    }
+
+    .collapsible {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-left: 1rem;
+    }
+
+    .collapsible li {
+      padding-left: 1rem; 
+    }
+
+    .collapsible.show {
+      max-height: 500px;
     }
   </style>
 </head>
@@ -138,20 +143,41 @@
   <div class="sidebar-left" id="menu">
     <ul>
       <li>Why the Bible?</li>
-      <li>THE OLD TESTAMENT</li>
-      <li>Genesis</li>
-      <li>Exodus</li>
-      <li>Leviticus</li>
-      <li>Numbers</li>
-      <li>Deuteronomy</li>
-      <li>THE NEW TESTAMENT</li>
-      <li>THE GOSPELS</li>
+
+      <li onclick="toggleOldTestament()">THE OLD TESTAMENT</li>
+      <ul id="old-testament-books" class="collapsible">
+        <li>Genesis</li>
+        <li>Exodus</li>
+        <li>Leviticus</li>
+        <li>Numbers</li>
+        <li>Deuteronomy</li>
+      </ul>
+
+      <li onclick="toggleNewTestament()">THE NEW TESTAMENT</li>
+      <ul id="new-testament-books" class="collapsible">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+
+      <li onclick="toggleGospels()">THE GOSPELS</li>
+      <ul id="gospels-books" class="collapsible">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
     </ul>
   </div>
 
   <div class="sidebar-right" id="faq">
     <h1>FAQ</h1>
-    <p>placeholder for FAQ</p>
+    <p>Placeholder for FAQ content.</p>
+    <p>More scrollable text...</p>
+    <p>More text...</p>
+    <p>More text...</p>
+    <p>More text...</p>
+    <p>More text...</p>
+    <p>End of FAQ.</p>
   </div>
 
   <main>
@@ -174,6 +200,21 @@
     function toggleFAQ() {
       const faq = document.getElementById('faq');
       faq.classList.toggle('open');
+    }
+
+    function toggleOldTestament() {
+      const section = document.getElementById('old-testament-books');
+      section.classList.toggle('show');
+    }
+
+    function toggleNewTestament() {
+      const section = document.getElementById('new-testament-books');
+      section.classList.toggle('show');
+    }
+
+    function toggleGospels() {
+      const section = document.getElementById('gospels-books');
+      section.classList.toggle('show');
     }
   </script>
 
